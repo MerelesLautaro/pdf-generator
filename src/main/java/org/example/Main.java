@@ -64,6 +64,7 @@ public class Main {
             PdfPTable tableSportmans = new PdfPTable(5);
             tableSportmans.setWidthPercentage(100); // Set the table width to 100% of the page width
 
+            tableSportmans.setSpacingBefore(10); // Add space before the table
             // Define the font for the table headers
             Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
 
@@ -88,6 +89,10 @@ public class Main {
             cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             tableSportmans.addCell(cell);
 
+            // Set column widths (proportional to the total table width)
+            float[] columnWidths = {0.5f, 2f, 2f, 2f, 2f};
+            tableSportmans.setWidths(columnWidths);// Adjust the widths as needed
+
             // Add sample rows (you can replace this with dynamic data)
             for (int i = 1; i <= 3; i++) { // Example for adding 3 rows
                 addCenteredCell(tableSportmans, String.valueOf(i)); // N°
@@ -98,6 +103,7 @@ public class Main {
             }
 
             // Add the table to the document
+            tableSportmans.setSpacingAfter(20);  // Add space after the table
             document.add(tableSportmans);
 
             //Seccion Instructores
@@ -108,6 +114,7 @@ public class Main {
             // Create a table with 5 columns
             PdfPTable tableInstructor = new PdfPTable(5);
             tableInstructor.setWidthPercentage(100); // Set the table width to 100% of the page width
+            tableInstructor.setSpacingBefore(20);
 
             // Add table headers with centered alignment
             PdfPCell cellInsctructor = new PdfPCell(new Phrase("N°", headerFont));
@@ -140,6 +147,8 @@ public class Main {
             }
 
             // Add the table to the document
+            tableInstructor.setWidths(columnWidths);
+            tableInstructor.setSpacingAfter(20);
             document.add(tableInstructor);
 
             //Seccion Responasbles de Equipo
@@ -150,6 +159,7 @@ public class Main {
             // Create a table with 5 columns
             PdfPTable tableResponsible = new PdfPTable(5);
             tableResponsible.setWidthPercentage(100); // Set the table width to 100% of the page width
+            tableResponsible.setSpacingBefore(20);
 
             // Add table headers with centered alignment
             PdfPCell cellResponsible = new PdfPCell(new Phrase("N°", headerFont));
@@ -182,6 +192,8 @@ public class Main {
             }
 
             // Add the table to the document
+            tableResponsible.setWidths(columnWidths);
+            tableResponsible.setSpacingAfter(20);
             document.add(tableResponsible);
 
             //Seccion Firmas
@@ -192,10 +204,12 @@ public class Main {
             signatureSection.add("_________________           _________________           _________________\n");
             signatureSection.add("     Responsable 1                    Responsable 2               Firma Autoridad Institución");
             signatureSection.setAlignment(Paragraph.ALIGN_CENTER);
+            signatureSection.setSpacingBefore(150);
             document.add(signatureSection);
 
             //Seccion Inscriptor
             Paragraph enroller = new Paragraph("Inscribe: LAUTARO MERELES - D.N.I.: 33.333.333",titleFont);
+            enroller.setSpacingBefore(20);
             document.add(enroller);
 
             Paragraph dataEnroller = new Paragraph("Teléfono: (3764) 44-4444 – Email: ejemplo@ejemplo.com",titleFont);
